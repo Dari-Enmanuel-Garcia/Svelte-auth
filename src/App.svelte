@@ -19,7 +19,6 @@
     </Protector>
   </Route>
 
-
   <Route path="/dashboard">
     <Protector>
       <Dashboard/>
