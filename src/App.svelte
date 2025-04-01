@@ -8,12 +8,17 @@
 
 <Router>
   <Route path="/">
+    <Protector redirectIfAuthenticated={true}>
       <Home />
+    </Protector>
   </Route>
   
   <Route path="/register">
+    <Protector redirectIfAuthenticated={true}>
       <Register />
+    </Protector>
   </Route>
+
 
   <Route path="/dashboard">
     <Protector>

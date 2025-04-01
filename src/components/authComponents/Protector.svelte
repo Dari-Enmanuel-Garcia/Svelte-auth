@@ -1,8 +1,10 @@
 <script>
   import { onMount } from "svelte";
   import { navigate } from "svelte-routing";
-  import Loader from "../Loader.svelte"
+  import Loader from "../Loader.svelte";
   import { verifyToken } from "../../auth/middlewareAuth";
+
+  export let redirectIfAuthenticated = false;
 
   let isAuthenticated = false;
   let isLoading = true;
@@ -11,7 +13,9 @@
     isAuthenticated = await verifyToken();
     isLoading = false;
 
-    if (!isAuthenticated) {
+    if (redirectIfAuthenticated && isAuthenticated) {
+      navigate("/dashboard");
+    } else if (!isAuthenticated && !redirectIfAuthenticated) {
       navigate("/");
     }
   });
@@ -20,7 +24,7 @@
 {#if isLoading}
   <Loader />
 {:else}
-  {#if isAuthenticated}
-    <slot /> 
+  {#if isAuthenticated || redirectIfAuthenticated}
+    <slot />
   {/if}
 {/if}

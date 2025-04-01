@@ -1,16 +1,59 @@
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  flex-direction: column;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  text-align: center;
+
+}
+
 .dashboard-title {
-    text-align: center;
-    font-size: 2rem;
-    color: #444;
-    margin-top: 50px;
+  font-size: 3.5rem;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 4px 6px #00001a;
+  position: relative;
+  z-index: 1;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.dashboard-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #ffffb3;
+  margin: 1rem auto;
+  border-radius: 2px;
+}
+
+.dashboard-img {
+  width: 350px;
+  height: 350px;
+  border-radius: 2rem;
+  object-fit: cover;
+  box-shadow: 0 20px 40px #242480;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  border: 8px solid #ffffff1a;
+}
+
+.dashboard-img:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+@media (max-width: 480px) {
+  .dashboard-img {
+    width: 250px;
+    height: 250px;
   }
 
- .dashboard-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 1rem; 
+  .dashboard-title {
+    font-size: 2rem;
   }
-  
+}
