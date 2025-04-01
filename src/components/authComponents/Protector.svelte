@@ -10,13 +10,19 @@
   let isLoading = true;
 
   onMount(async () => {
-    isAuthenticated = await verifyToken();
-    isLoading = false;
+    try {
+      const tokenValid = await verifyToken();
+      isAuthenticated = tokenValid ? true : false;
+    } catch (error) {
+      isAuthenticated = false; 
+    } finally {
+      isLoading = false;
 
-    if (redirectIfAuthenticated && isAuthenticated) {
-      navigate("/dashboard");
-    } else if (!isAuthenticated && !redirectIfAuthenticated) {
-      navigate("/");
+      if (redirectIfAuthenticated && isAuthenticated) {
+        navigate("/dashboard");
+      } else if (!isAuthenticated && !redirectIfAuthenticated) {
+        navigate("/");
+      }
     }
   });
 </script>
